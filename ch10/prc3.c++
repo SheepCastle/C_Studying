@@ -32,5 +32,5 @@ int main() {
         i.Check(obj);
     }
 
-    cout << "cnt = " << MyClass::cnt << endl;
+    cout << "cnt = " << MyClass::cnt << endl;   
 }
