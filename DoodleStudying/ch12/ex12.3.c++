@@ -17,6 +17,8 @@ class Bingsoo {
 public:
     Bingsoo() { cout << "Bingsoo()" << endl; }
     ~Bingsoo() { cout << "~Bingsoo()" << endl; }
+private:
+    Ice ice;
 };
 
 class PatBingsoo {
