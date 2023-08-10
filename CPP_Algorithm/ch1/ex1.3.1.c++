@@ -1,39 +1,77 @@
 #include <iostream>
-#include <array>
-using namespace std; 
+#include <sstream>
+#include <algorithm>
 
-void print(array<int, 5> arr)
+template <typename T>
+class dynamic_array
 {
-    for (auto ele : arr)
-        std::cout << ele << ", ";
-}
-
-int main() {
-    array<int, 10> arr1; // 크기가 10인 int형 배열 선언
-
-    arr1[0] = 1; // 배열의 첫 번째 원소에 1 대입
-    cout << "arr1 배열의 첫 번째 원소: " << arr1[0] << endl; // arr1 배열의 첫 번째 원소: 1
-
-    array<int, 4> arr2 = {1, 2, 3, 4};
-    cout << "arr2의 모든 원소";
-
-    for (int i = 0; i < arr2.size(); i++)
-        cout << arr2[i] << " ";
-    cout << endl;
-
-    // at()함수가 []연산자보다 조금 느리지만 index의 값이 유효하지 않으면 예외를 발생시키기 때문에 잘 활용하면 아래와 같은 예외 처리 코드를 만들 수 있다.
-    array<int, 4> arr3 = {1, 2, 3, 4};
-
-    try
+    T* data;
+    size_t n;
+public:
+    dynamic_array(int n)
     {
-        cout << arr3.at(3) << endl; // 에러 아님
-        cout << arr3.at(4) << endl; // std::out_of_range 예외 발생
-    }
-    catch (const std::out_of_range& ex)
-    {
-        cerr << ex.what() << endl;
+        this->n = n;
+        data = new T[n];
     }
 
-    array<int, 5> arr = {1, 2, 3, 4, 5};
-    print (arr); // 1, 2, 3, 4, 5,
-}
+    dynamic_array(const dynamic_array<T>& other)
+    {
+        n = other.n;
+
+        data = newT[n];
+
+        for (int i = 0; i < n; i++)
+            data[i] = other[i];
+    }
+
+    T& operator[](int index)
+    {
+        return data[index];
+    }
+
+    const T& operator[](int index) const
+    {
+        return data[index];
+    }
+
+    T& at(int index)
+    {
+        if(index < n)
+            return data[index]
+        throw "index out of range";
+    }
+
+    size_t size() const{
+        return n;
+    }
+
+    ~dynamic_array()
+    {
+        delete[] data; // 메모리 릭 방지
+    }
+    T* begin() { return data;}
+    const T* begin() const {return data;}
+    T* end() { return data + n; }
+    const T* end() const { return data + n; }
+
+    friend dynamic_array<T> operator+(const dynamic_array<T>& arr1, dynamic_array<T>& arr2)
+    {
+        dynamic_array<T> result(arr1.size() + arr2.size());
+        std::copy(arr1.begin(), arr1.end(), result.begin());
+        std::copy(arr2.begin(), arr2.end(), result.begin() + arr1.size());
+
+        return result
+    }
+
+    std::string to_string(const std::string& sep = ", ")
+    {
+        if(n == 0)
+            return "";
+        
+        std::ostringstream os;
+        os << data[0]
+
+        for (int i = 1; i < n: i++)
+            os << sep << data[i]
+    }
+};
