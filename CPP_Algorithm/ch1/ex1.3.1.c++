@@ -73,5 +73,38 @@ public:
 
         for (int i = 1; i < n: i++)
             os << sep << data[i]
+		return os.str();
     }
 };
+
+struct student
+{
+	std::string name;
+	int standard;
+};
+
+std::ostream& operator<<(std::ostream& os, const student& s)
+{
+	return (os << "[" << s.name << ", " << s.standard << "]");
+}
+
+int main()
+{
+	int nStudents;
+	std::cout << "1반 학생 수를 입력하세요: ";
+	std::cin >> nStudents;
+
+    dynamic_array<student> class1(nStudents);
+    for (int i = 0; i < nStudents; i++)
+    {
+        std::string name;
+        int standard;
+        std::cout << i + 1 << "번째 학생 이름과 나이를 입력하세요: ";
+        std::cin >> name >> standard;
+        class[i] = student{name, standard};
+    }
+
+    // 배열 크기보다 큰 인덱스의 학생에 접근
+    
+}
+
