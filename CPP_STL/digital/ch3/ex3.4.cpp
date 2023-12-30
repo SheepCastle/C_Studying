@@ -1,8 +1,4 @@
-#include <iostream>
-
-const int MAX_COUNT = 100;
-
-template<typename T>
+template<typename T, int Size>
 class Stack
 {
 public:
@@ -10,7 +6,7 @@ public:
     {
         Clear();
     }
-
+    
     // 초기화 한다.
     void Clear()
     {
@@ -29,16 +25,22 @@ public:
         return 0 == m_Count ? true : false;
     }
 
+    //데이터를 담을 수 있는 최대 개수
+    int GetStackSize()
+    {
+        return Size;
+    }
+
     // 데이터를 저장한다.
     bool push(T data)
     {
-        // 저장 할 수 있는 개수를 넘는지 조사한다.
-        if(m_Count >= MAX_COUNT)
+        // 저장할 수 있는 개수를 넘는지 조사한다.
+        if (m_Count >= Size)
         {
             return false;
         }
 
-        // 저장한 개수를 하나 늘린다.
+        // 저장 후 개수를 하나 늘린다.
         m_aData[m_Count] = data;
         ++m_Count;
 
@@ -58,9 +60,8 @@ public:
         --m_Count;
         return m_aData[m_Count];
     }
-
 private:
-    T m_aData[MAX_COUNT];
+    T m_aData[Size];
     int m_Count;
 };
 
@@ -69,21 +70,9 @@ using namespace std;
 
 int main()
 {
-    Stack<double> kStackExp;
+    Stack<int, 100> kStack1;
+    cout << "스택의 크기는?" << kStack1.GetStackSize() << endl;
 
-    cout << "첫번째 게임 종료- 현재 경험치 145.5f" << endl;
-    kStackExp.push(145.5f);
-
-    cout << "두번째 게임 종료- 현재 경험치 183.25f" << endl;
-    kStackExp.push(183.25f);
-
-    cout << "세번째 게임 종료- 현재 경험치 162.3f" << endl;
-    kStackExp.push(162.3f);
-
-    int Count = kStackExp.Count();
-    for(int i = 0; i < Count; ++i)
-    {
-        cout << "현재 경험치->" << kStackExp.pop() << endl;
-    }
-
+    Stack<double, 60> kStack2;
+    cout << "스택의 크기는?" << kStack2.GetStackSize() << endl;
 }
