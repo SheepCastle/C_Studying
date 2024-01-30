@@ -1,16 +1,16 @@
 // 최솟값 구하기
 #include <iostream>
 #include <vector>
-using namespace std;
-const int INF = 20000000; // 충분히 큰 값을 설정
+
+const int INF = 2000000; // 충분히 큰 값을 설정
 
 int main()
 {
-    // 입력
+    // 입력 받기
     int N;
-    cin >> N;
-    vector<int> a(N);
-    for (int i = 0; i < N; ++i) cin >> a[i];
+    std::cin >> N;
+    std::vector<int> a(N);
+    for (int i = 0; i < N; ++i) std::cin >> a[i];
 
     // 선형 탐색
     int min_value = INF;
@@ -20,5 +20,5 @@ int main()
     }
 
     // 결과 출력
-    cout << min_value << endl;
+    std::cout << min_value << std::endl;
 }
